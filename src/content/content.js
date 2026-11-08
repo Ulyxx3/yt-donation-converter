@@ -25,7 +25,9 @@
     'yt-live-chat-paid-sticker-renderer #purchase-amount',
     'yt-live-chat-ticker-paid-message-item-renderer #text',
     'yt-live-chat-ticker-paid-sticker-item-renderer #price',
-    'yt-live-chat-ticker-paid-sticker-item-renderer #text'
+    'yt-live-chat-ticker-paid-sticker-item-renderer #text',
+    'ytd-pdg-comment-chip-renderer #text',
+    '#paid-comment-chip'
   ].join(', ');
 
   /**
