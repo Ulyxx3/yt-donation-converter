@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE settings
+.vscode/
+.idea/
+
+# Extension signing keys
+*.pem
+*.crx
+*.xpi
+

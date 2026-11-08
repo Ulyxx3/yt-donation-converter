@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Donation Converter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="../../icons/icon32.png" alt="Logo" class="logo">
+      <div class="titles">
+        <h1 class="app-title">Donation Converter</h1>
+        <span class="app-subtitle">YouTube Live Chat</span>
+      </div>
+    </div>
+    <label class="switch" title="Enable or disable extension">
+      <input type="checkbox" id="toggle-enabled" checked>
+      <span class="slider round"></span>
+    </label>
+  </header>
+
+  <main class="content-container">
+    <!-- Target Currency -->
+    <section class="card">
+      <label for="select-target-currency" class="card-label">
+        <span class="label-icon">🎯</span>
+        <span class="label-text">Convert Donations To</span>
+      </label>
+      <div class="select-wrapper">
+        <select id="select-target-currency" class="input-select">
+          <!-- Populated by popup.js -->
+        </select>
+      </div>
+      <p class="helper-text">Donations already in this currency will remain untouched.</p>
+    </section>
+
+    <!-- Source Currency Mode -->
+    <section class="card">
+      <span class="card-label">
+        <span class="label-icon">🌐</span>
+        <span class="label-text">Convert From</span>
+      </span>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="conversion-mode" value="all" checked>
+          <span>All foreign currencies (Auto)</span>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="conversion-mode" value="whitelist">
+          <span>Only selected currencies</span>
+        </label>
+      </div>
+
+      <div id="whitelist-container" class="whitelist-box hidden">
+        <label for="whitelist-search" class="sub-label">Select currencies to convert:</label>
+        <input type="text" id="whitelist-search" class="search-input" placeholder="Search (e.g. ARS, TRY, BRL)...">
+        <div id="whitelist-tags" class="tags-container">
+          <!-- Populated by popup.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Display Format -->
+    <section class="card">
+      <label for="select-display-format" class="card-label">
+        <span class="label-icon">👁️</span>
+        <span class="label-text">Display Format</span>
+      </label>
+      <div class="select-wrapper">
+        <select id="select-display-format" class="input-select">
+          <option value="original_append_symbol">Original (~Target Symbol) — e.g. ARS 5,000 (~€2.90)</option>
+          <option value="original_append_code">Original (≈ Target Code) — e.g. ARS 5,000 (≈ 2.90 EUR)</option>
+          <option value="target_first_symbol">~Target (Original) — e.g. ~€2.90 (ARS 5,000)</option>
+          <option value="target_only">Target Only (Hover for Original) — e.g. ~€2.90</option>
+        </select>
+      </div>
+
+      <div class="preview-box">
+        <span class="preview-title">Live Preview:</span>
+        <span id="preview-text" class="preview-value">ARS 5,000.00 (~€2.90)</span>
+      </div>
+    </section>
+
+    <!-- Advanced Settings (Collapsible) -->
+    <details class="advanced-section">
+      <summary class="advanced-summary">⚙️ Ambiguous "$" Symbol Fallback</summary>
+      <div class="advanced-content">
+        <label for="select-dollar-fallback" class="sub-label">When chat only shows "$", treat as:</label>
+        <div class="select-wrapper">
+          <select id="select-dollar-fallback" class="input-select">
+            <option value="USD">USD — US Dollar ($)</option>
+            <option value="CAD">CAD — Canadian Dollar (C$)</option>
+            <option value="AUD">AUD — Australian Dollar (A$)</option>
+            <option value="NZD">NZD — New Zealand Dollar (NZ$)</option>
+            <option value="SGD">SGD — Singapore Dollar (S$)</option>
+            <option value="HKD">HKD — Hong Kong Dollar (HK$)</option>
+            <option value="MXN">MXN — Mexican Peso (Mex$)</option>
+            <option value="ARS">ARS — Argentine Peso ($)</option>
+            <option value="CLP">CLP — Chilean Peso ($)</option>
+          </select>
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <footer class="app-footer">
+    <div class="rates-status">
+      <span class="status-dot"></span>
+      <span id="rates-status-text">Rates updated: Checking...</span>
+    </div>
+    <div class="footer-actions">
+      <button id="btn-refresh-rates" class="btn-secondary" title="Fetch latest exchange rates">
+        <span class="btn-icon">🔄</span> Sync Rates
+      </button>
+      <a href="https://github.com/Ulyxx3/yt-donation-converter-" target="_blank" rel="noopener noreferrer" class="github-link" title="View Source on GitHub">
+        <svg class="gh-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="../utils/currencies.js"></script>
+  <script src="../content/parser.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+{
+  "name": "yt-donation-converter",
+  "version": "1.0.0",
+  "description": "Cross-browser extension (Chromium and Firefox) to convert YouTube Live Chat donations and Super Chats into your preferred currency in real-time.",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node test/test-parser.js"
+  },
+  "keywords": [
+    "youtube",
+    "superchat",
+    "currency",
+    "converter",
+    "extension",
+    "chrome",
+    "firefox",
+    "webextension"
+  ],
+  "author": "Ulyxx",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ulyxx3/yt-donation-converter-.git"
+  }
+}
+

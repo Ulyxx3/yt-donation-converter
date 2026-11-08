@@ -1,0 +1,32 @@
+/**
+ * YouTube Donation Currency Converter
+ * Styling for converted currency annotations in YouTube Live Chat.
+ */
+
+.yt-donation-converted {
+  font-weight: 500;
+  opacity: 0.92;
+  margin-left: 4px;
+  display: inline-block;
+  cursor: help;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.yt-donation-converted:hover {
+  opacity: 1;
+  text-decoration: underline dotted;
+}
+
+/* For target-only format */
+.yt-donation-converted-only {
+  font-weight: 600;
+  cursor: help;
+}
+
+/* Ensure ticker items don't overflow */
+yt-live-chat-ticker-paid-message-item-renderer .yt-donation-converted,
+yt-live-chat-ticker-paid-sticker-item-renderer .yt-donation-converted {
+  font-size: 0.9em;
+  margin-left: 2px;
+}
+
